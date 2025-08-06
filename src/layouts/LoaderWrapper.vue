@@ -1,11 +1,4 @@
-<script setup>
-import { storeToRefs } from 'pinia'
-import { useUIStore } from '../stores/ui'
-
-const uiStore = useUIStore()
-const { isLoading } = storeToRefs(uiStore)
-</script>
-
+<!-- hiển thị thanh loading nhỏ -->
 <template>
   <div
     :class="{
@@ -17,6 +10,24 @@ const { isLoading } = storeToRefs(uiStore)
     <div class="page-loader__bar" />
   </div>
 </template>
+
+<script>
+import { computed } from 'vue'
+import { useUIStore } from '../stores/ui'
+import { storeToRefs } from 'pinia'
+
+export default {
+  name: 'PageLoader',
+  setup() {
+    const uiStore = useUIStore()
+    const { isLoading } = storeToRefs(uiStore)
+
+    return {
+      isLoading,
+    }
+  },
+}
+</script>
 
 <style scoped>
 .page-loader {
